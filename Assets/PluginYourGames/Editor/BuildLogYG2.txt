@@ -1,3 +1,0 @@
-﻿Build path: C:/Users/Danila/Desktop/Games/Майнкрафтли
-Build number: 9
-PluginYG version: 2.0092

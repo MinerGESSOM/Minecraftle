@@ -1,10 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
-using System.IO;
 using UnityEngine.UI;
 using System.Linq;
 using TMPro;
-using YG;
 
 
 public class CraftManager : MonoBehaviour
@@ -41,7 +39,6 @@ public class CraftManager : MonoBehaviour
 
     public int Rank = 0;
 
-    public bool EveryDayQuest = false;
 
     public TextMeshProUGUI text;
 
@@ -49,20 +46,18 @@ public class CraftManager : MonoBehaviour
     public GameObject LossMenu;
     public GameObject StartMenu;
     public GameObject GameMenu;
-    public GameObject TopMenu;
-    public GameObject MenuQuest;
-    public GameObject ButtonEveryDayQuest;
 
     public int MnX = 1;
 
-    public bool ActiveEveryDayQuest = true;
 
     public Image LossImage;
     public TextMeshProUGUI LossText;
 
-    public LeaderboardYG Top;
-
     bool Prov = false;
+
+
+    public Image[] imagesItem;
+    [SerializeField] TextMeshProUGUI textAttemp;
 
     public static CraftManager Instance;
 
@@ -83,123 +78,17 @@ public class CraftManager : MonoBehaviour
 	    }
     }
 
-
-    private void OnEnable()
+    public void Save()
     {
-        YG2.MultiplayerSessions.onSessionsLoaded += OnSessionsLoaded;
+        PlayerPrefs.SetInt("Rank", Rank);
+        PlayerPrefs.Save();
     }
-
-    private void OnDisable()
-    {
-        YG2.MultiplayerSessions.onSessionsLoaded -= OnSessionsLoaded;
-    }
-
-
-    public void CheckIfQuestDoneByOthers()
-    {
-        // Создаем конфиг для поиска сессий с нужным днем в meta1
-        var config = new InitConfig();
-        var meta = new MetaFilter();
-        
-        // Ищем сессии, где meta1 равен текущему дню (Day)
-        // Если хотите найти диапазон, используйте new YG.Range(min, max)
-        int Day = int.Parse(YG2.GetFlag("Day"));
-        meta.meta1 = new YG.Range(Day - 1, Day + 1); 
-        config.meta = meta;
-        config.count = 10; // Максимум 10 записей (лимит Яндекс)
-
-        YG2.MultiplayerSessions.Init(config);
-    }
-
-    // Обработчик загруженных сессий
-    private void OnSessionsLoaded(List<Session> sessions)
-    {
-        if (sessions == null || sessions.Count == 0)
-        {
-            OnQuestCheckCompleted(false);
-            return;
-        }
-
-        int playersCount = sessions.Count;
-
-
-        if (playersCount > 2)
-        {
-            OnQuestCheckCompleted(true);
-        }
-        else
-        {
-            OnQuestCheckCompleted(false);
-        }
-    }
-
-    // Событие для передачи результата проверки
-    private void OnQuestCheckCompleted(bool isDoneByOthers)
-    {
-        if(isDoneByOthers)
-        {
-            ActiveEveryDayQuest = false;
-        }
-        else
-        {
-            YG2.InterstitialAdvShow();
-            string value = YG2.GetFlag("EveryDayQuest");
-            EveryDayQuest = true;
-            attempt = 1;
-            GameMenu.SetActive(true);
-            StartMenu.SetActive(false);
-            Active = true;
-            for(int i = 0; i < 9; i++)
-            {
-                imagesProv[i].color = Color.black;
-                CraftItem[i] = -1;
-            }
-
-            image.sprite = null;
-
-            craftsItemGame = new List<string[]>{};
-
-            for(int i = 0; i < crafts.Count; i++)
-            {
-                if(value == crafts[i][1])
-                {
-                    craftsItemGame.Add(crafts[i]);
-                }
-            }
-
-            BestCraft = null;
-
-
-            SavePlayerQuestCompletion();
-            ActiveEveryDayQuest = false;
-        }
-        Debug.Log($"Результат проверки: {isDoneByOthers}");
-    }
-
-    // Функция сохранения, что этот человек сделал задание
-    public void SavePlayerQuestCompletion()
-    {
-        var meta = new Meta();
-
-        int Day = int.Parse(YG2.GetFlag("Day"));
-        meta.meta1 = Day;
-
-
-        YG2.MultiplayerSessions.Commit(new Payload());
-        YG2.MultiplayerSessions.Push(meta);
-
-        Debug.Log($"Сохранено выполнение задания для дня {Day}");
-    }
-
-
     void Start()
     {
 
 
-        Rank = YG2.saves.Rank;
-
-
-        string[] lines = craftingFile.text.Split(new[] { '\n', '\r' }, System.StringSplitOptions.RemoveEmptyEntries);
+        Rank = PlayerPrefs.GetInt("Rank", 0);
+        string[] lines = craftingFile.text.Split('\n');
             
         foreach (string line in lines)
         {
@@ -214,9 +103,13 @@ public class CraftManager : MonoBehaviour
 
     public void StartGame()
     {
-        YG2.InterstitialAdvShow();
-        EveryDayQuest = false;
+        //Реклама
+        for(int i = 0; i < imagesItem.Count(); i++)
+        {
+            imagesItem[i].color = Color.white;
+        }
         attempt = 1;
+        textAttemp.text = "1/10";
         idCraftItem = Random.Range(0, 141) % 141;
         bool ProvId = false;
         GameMenu.SetActive(true);
@@ -307,6 +200,7 @@ public class CraftManager : MonoBehaviour
             return;
         }
         attempt++;
+        textAttemp.text = attempt.ToString() + "/10";
         bool Sovpadenie = true;
         for(int i = 0; i < craftsItemGame.Count; i++)
         {
@@ -330,8 +224,9 @@ public class CraftManager : MonoBehaviour
                 Active = false;
                 WinMenu.SetActive(true);
                 GameMenu.SetActive(false);
-                RankWin();
-                if(YG2.lang == "ru")
+                Rank += MnX;
+                /*
+                if(true)//Язык
                 {
                     text.text = "Ваш рейтинг\n" + Rank.ToString();
                 }
@@ -339,6 +234,8 @@ public class CraftManager : MonoBehaviour
                 {
                     text.text = "Your rank\n" + Rank.ToString();
                 }
+                */
+                text.text = "Ваш рейтинг\n" + Rank.ToString();
                 break;
             }
         }
@@ -428,6 +325,32 @@ public class CraftManager : MonoBehaviour
                 }
 
             }
+
+            for(int i = 0; i < 9; i++)
+            {
+                int idItemCraft = CraftItem[i];
+                if(idItemCraft != -1)
+                {
+                    if(masProv[i] == 2)
+                    {
+                        imagesItem[idItemCraft].color = Color.green;
+                    }
+                    else if(masProv[i] == 1)
+                    {
+                        if(imagesItem[idItemCraft].color != Color.green)
+                        {
+                            imagesItem[idItemCraft].color = Color.yellow;
+                        }
+                    }
+                    else
+                    {
+                        if(imagesItem[idItemCraft].color != Color.green && imagesItem[idItemCraft].color != Color.yellow)
+                        {
+                            imagesItem[idItemCraft].color = Color.red;
+                        }
+                    }
+                }
+            }
         }
         
         ButtonNext.SetActive(true);
@@ -438,7 +361,8 @@ public class CraftManager : MonoBehaviour
         {
             Active = false;
             LossImage.sprite = sprites[int.Parse(BestCraft[1])];
-            if(YG2.lang == "ru")
+            /*
+            if(true)//Язык
             {
                 LossText.text = BestCraft[0];
             }
@@ -446,6 +370,8 @@ public class CraftManager : MonoBehaviour
             {
                 LossText.text = BestCraft[11];
             }
+            */
+            LossText.text = BestCraft[0];
             LossMenu.SetActive(true);
             GameMenu.SetActive(false);
         }
@@ -453,54 +379,9 @@ public class CraftManager : MonoBehaviour
 
     public void StartMenuButton()
     {
-        YG2.InterstitialAdvShow();
+        //Реклама
         LossMenu.SetActive(false);
         WinMenu.SetActive(false);
-        TopMenu.SetActive(false);
         StartMenu.SetActive(true);
-        MenuQuest.SetActive(false);
-    }
-
-
-    public void EveryDayQuestStart()
-    {
-        ButtonEveryDayQuest.SetActive(false);
-        if (!ActiveEveryDayQuest)
-        {
-            return;
-        }
-        else
-        {
-            CheckIfQuestDoneByOthers();
-        }
-    }
-
-
-    void RankWin()
-    {
-        if(EveryDayQuest == false)
-        {
-            Rank += MnX;
-        }
-        else
-        {
-            Rank += 10 * MnX;
-        }
-        YG2.saves.Rank = Rank;
-        YG2.SetLeaderboard("RankTop", Rank);
-        Top.SetLeaderboard(Rank); 
-        YG2.SaveProgress();
-    }
-
-    public void ButtonRank()
-    {
-        TopMenu.SetActive(true);
-        StartMenu.SetActive(false);
-        Top.UpdateLB();
-    }
-
-    public void OnMenuEveryDayQuest()
-    {
-        MenuQuest.SetActive(true);
     }
 }

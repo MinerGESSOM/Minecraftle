@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using YG;
 
 public class AdvBonus : MonoBehaviour
 {
@@ -18,7 +17,7 @@ public class AdvBonus : MonoBehaviour
 
     void Start()
     {
-        if(YG2.lang == "ru")
+        if(true)//Язык
         {
             simvol = "с";
         }
@@ -65,12 +64,12 @@ public class AdvBonus : MonoBehaviour
         {
             return;
         }
-        YG2.RewardedAdvShow("X2", () =>
+        //Рекламя
         {
             CraftManager.Instance.MnX = 2;
             tickX2 = 180f;
             ActiveX2 = true;
-        });
+        };
     }
 
     public void ButtonBonus3()
@@ -79,11 +78,11 @@ public class AdvBonus : MonoBehaviour
         {
             return;
         }
-        YG2.RewardedAdvShow("X3", () =>
+        //Реклама
         {
             CraftManager.Instance.MnX = 3;
             tickX3 = 120f;
             ActiveX3 = true;
-        });
+        };
     }
 }
