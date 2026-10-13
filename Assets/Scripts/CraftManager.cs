@@ -104,6 +104,7 @@ public class CraftManager : MonoBehaviour
     public void StartGame()
     {
         //Реклама
+        ButtonNext.SetActive(false);
         for(int i = 0; i < imagesItem.Count(); i++)
         {
             imagesItem[i].color = Color.white;
@@ -225,6 +226,7 @@ public class CraftManager : MonoBehaviour
                 WinMenu.SetActive(true);
                 GameMenu.SetActive(false);
                 Rank += MnX;
+                Save();
                 /*
                 if(true)//Язык
                 {

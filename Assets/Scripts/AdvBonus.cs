@@ -5,18 +5,21 @@ using UnityEngine;
 
 public class AdvBonus : MonoBehaviour
 {
-    float tickX2 = 0;
-    bool ActiveX2 = false;
-    float tickX3 = 0;
-    bool ActiveX3 = false;
+    public  float tickX2 = 0;
+    public bool ActiveX2 = false;
+    public float tickX3 = 0;
+    public bool ActiveX3 = false;
 
     [SerializeField] TextMeshProUGUI textTime1;
     [SerializeField] TextMeshProUGUI textTime2;
+    [SerializeField] YandexRewardedAd AddM;
 
     string simvol;
 
     void Start()
     {
+        simvol = "с";
+        /*
         if(true)//Язык
         {
             simvol = "с";
@@ -25,6 +28,7 @@ public class AdvBonus : MonoBehaviour
         {
             simvol = "s";
         }
+        */
     }
 
     private void Update()
@@ -40,6 +44,7 @@ public class AdvBonus : MonoBehaviour
             ActiveX2 = false;
             textTime1.text = "";
             CraftManager.Instance.MnX = 1;
+            AddM.LoadRewardedAd();
         }
 
         if(tickX3 > 0)
@@ -54,35 +59,30 @@ public class AdvBonus : MonoBehaviour
             ActiveX3 = false;
             textTime2.text = "";
             CraftManager.Instance.MnX = 1;
+            AddM.LoadRewardedAd();
         }
     }
 
 
     public void ButtonBonus2()
     {
-        if (ActiveX3)
+        if (ActiveX3 || ActiveX2)
         {
             return;
         }
         //Рекламя
-        {
-            CraftManager.Instance.MnX = 2;
-            tickX2 = 180f;
-            ActiveX2 = true;
-        };
+        AddM.Mn = 2;
+        AddM.Show();
     }
 
     public void ButtonBonus3()
     {
-        if (ActiveX2)
+        if (ActiveX2 || ActiveX3)
         {
             return;
         }
         //Реклама
-        {
-            CraftManager.Instance.MnX = 3;
-            tickX3 = 120f;
-            ActiveX3 = true;
-        };
+        AddM.Mn = 3;
+        AddM.Show();
     }
 }
