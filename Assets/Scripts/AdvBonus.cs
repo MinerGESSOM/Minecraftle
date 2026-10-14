@@ -12,7 +12,7 @@ public class AdvBonus : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI textTime1;
     [SerializeField] TextMeshProUGUI textTime2;
-    [SerializeField] YandexRewardedAd AddM;
+    [SerializeField] VKAdManager AddM;
 
     string simvol;
 
@@ -44,7 +44,6 @@ public class AdvBonus : MonoBehaviour
             ActiveX2 = false;
             textTime1.text = "";
             CraftManager.Instance.MnX = 1;
-            AddM.LoadRewardedAd();
         }
 
         if(tickX3 > 0)
@@ -59,7 +58,6 @@ public class AdvBonus : MonoBehaviour
             ActiveX3 = false;
             textTime2.text = "";
             CraftManager.Instance.MnX = 1;
-            AddM.LoadRewardedAd();
         }
     }
 
@@ -70,9 +68,14 @@ public class AdvBonus : MonoBehaviour
         {
             return;
         }
-        //Рекламя
-        AddM.Mn = 2;
-        AddM.Show();
+        //Реклама
+        AddM.ShowRewarded(success =>
+        {
+            if (success)
+            {
+                CraftManager.Instance.MnX = 2;
+            }
+        });
     }
 
     public void ButtonBonus3()
@@ -82,7 +85,12 @@ public class AdvBonus : MonoBehaviour
             return;
         }
         //Реклама
-        AddM.Mn = 3;
-        AddM.Show();
+        AddM.ShowRewarded(success =>
+        {
+            if (success)
+            {
+                CraftManager.Instance.MnX = 3;
+            }
+        });
     }
 }
