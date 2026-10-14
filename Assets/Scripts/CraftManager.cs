@@ -7,7 +7,6 @@ using TMPro;
 
 public class CraftManager : MonoBehaviour
 {
-    public VkBridgeController bridge;
     [SerializeField] private TextAsset craftingFile;
 
     public Sprite[] sprites;
@@ -68,7 +67,6 @@ public class CraftManager : MonoBehaviour
         { 
 	        Instance = this;
             DontDestroyOnLoad(gameObject);
-            bridge.VKWebAppInit();
             for(int i = 0; i < 9; i++)
             {
                 CraftItem[i] = -1;
@@ -82,17 +80,8 @@ public class CraftManager : MonoBehaviour
 
     public void Save()
     {
-        string value = Rank.ToString();
-        var args = new Dictionary<string, string>
-        {
-            { "key", "Rank" },
-            { "value", value }
-        };
-
-        bridge.Send("VKWebAppStorageSet", args, callback =>
-        {
-            Debug.Log("Save result: " + callback);
-        });
+        PlayerPrefs.SetInt("Rank", Rank);
+        PlayerPrefs.Save();
     }
     void Start()
     {

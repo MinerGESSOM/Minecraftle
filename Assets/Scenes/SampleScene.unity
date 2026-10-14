@@ -2673,74 +2673,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &643535420
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 7172282011744538685, guid: 4b31a6436a282364085b5fd5d9518611, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7172282011744538685, guid: 4b31a6436a282364085b5fd5d9518611, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7172282011744538685, guid: 4b31a6436a282364085b5fd5d9518611, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7172282011744538685, guid: 4b31a6436a282364085b5fd5d9518611, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7172282011744538685, guid: 4b31a6436a282364085b5fd5d9518611, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7172282011744538685, guid: 4b31a6436a282364085b5fd5d9518611, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7172282011744538685, guid: 4b31a6436a282364085b5fd5d9518611, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7172282011744538685, guid: 4b31a6436a282364085b5fd5d9518611, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7172282011744538685, guid: 4b31a6436a282364085b5fd5d9518611, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7172282011744538685, guid: 4b31a6436a282364085b5fd5d9518611, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7172282011744538687, guid: 4b31a6436a282364085b5fd5d9518611, type: 3}
-      propertyPath: m_Name
-      value: VkBridge
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 4b31a6436a282364085b5fd5d9518611, type: 3}
---- !u!114 &643535421 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7172282011744538684, guid: 4b31a6436a282364085b5fd5d9518611, type: 3}
-  m_PrefabInstance: {fileID: 643535420}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a23aba91a4ed784e8154b90ec84d2cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &655559352
 GameObject:
   m_ObjectHideFlags: 0
@@ -3946,7 +3878,7 @@ MonoBehaviour:
   ActiveX3: 0
   textTime1: {fileID: 1769889412}
   textTime2: {fileID: 1158593169}
-  AddM: {fileID: 0}
+  AddM: {fileID: 1387238524}
 --- !u!4 &893792079
 Transform:
   m_ObjectHideFlags: 0
@@ -4584,9 +4516,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1387238528}
-        m_TargetAssemblyTypeName: VKAdManager, Assembly-CSharp
-        m_MethodName: OnLevelCompleted
+      - m_Target: {fileID: 1399682442}
+        m_TargetAssemblyTypeName: CraftManager, Assembly-CSharp
+        m_MethodName: StartMenuButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4595,6 +4527,30 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1387238525}
+        m_TargetAssemblyTypeName: YandexInterstitialAd, Assembly-CSharp
+        m_MethodName: Show
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1795130786}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &975014761
 MonoBehaviour:
@@ -5921,9 +5877,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1387238528}
-        m_TargetAssemblyTypeName: VKAdManager, Assembly-CSharp
-        m_MethodName: OnLevelCompleted
+      - m_Target: {fileID: 1399682442}
+        m_TargetAssemblyTypeName: CraftManager, Assembly-CSharp
+        m_MethodName: StartMenuButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5932,6 +5888,30 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1387238525}
+        m_TargetAssemblyTypeName: YandexInterstitialAd, Assembly-CSharp
+        m_MethodName: Show
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1795130786}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &1297734993
 MonoBehaviour:
@@ -6322,7 +6302,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1387238527}
-  - component: {fileID: 1387238528}
+  - component: {fileID: 1387238526}
+  - component: {fileID: 1387238525}
+  - component: {fileID: 1387238524}
   m_Layer: 0
   m_Name: Add
   m_TagString: Untagged
@@ -6330,6 +6312,44 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1387238524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1387238523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 363cdd704ec25844eb147e7d76f4585b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AdvBonus: {fileID: 893792078}
+  Mn: 1
+--- !u!114 &1387238525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1387238523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cd975453dec83945a4a63e9f7a749e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1387238526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1387238523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c748173a7c624341ab60be4691ffe3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1387238527
 Transform:
   m_ObjectHideFlags: 0
@@ -6345,21 +6365,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1387238528
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1387238523}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 738890548541b3244b56f1ec3a8d86cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bridge: {fileID: 643535421}
-  interstitialCooldown: 90
-  S: {fileID: 1795130786}
 --- !u!1 &1399682441
 GameObject:
   m_ObjectHideFlags: 0
@@ -6389,7 +6394,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaff6ab42fd94964fb489501465595e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bridge: {fileID: 643535421}
   craftingFile: {fileID: 4900000, guid: 796c0757bc220c34881c2101c9581e81, type: 3}
   sprites:
   - {fileID: 21300000, guid: 14f02d9547586af4a88e0ee7e63d3182, type: 3}
@@ -7289,7 +7293,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1387238525}
         m_TargetAssemblyTypeName: YandexInterstitialAd, Assembly-CSharp
         m_MethodName: LoadInterstitial
         m_Mode: 1
@@ -10734,4 +10738,3 @@ SceneRoots:
   - {fileID: 1432782518}
   - {fileID: 1907139965}
   - {fileID: 1387238527}
-  - {fileID: 643535420}

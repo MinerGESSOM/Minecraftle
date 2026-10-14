@@ -1,5 +1,8 @@
 <dependencies>
-  <packages />
+  <packages>
+    <package>androidx.lifecycle:lifecycle-process:2.4.1</package>
+    <package>com.yandex.android:mobileads:7.2.0</package>
+  </packages>
   <files />
   <settings>
     <setting name="androidAbis" value="arm64-v8a,armeabi-v7a" />
